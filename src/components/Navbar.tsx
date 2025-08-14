@@ -28,7 +28,12 @@ export const Navbar = () => {
               'has-background-grey-lighter':
                 location.pathname.startsWith('/people'),
             })}
-            to="/people"
+            to={{
+              pathname: '/people',
+              search: location.pathname.startsWith('/people')
+                ? location.search
+                : '',
+            }}
           >
             People
           </Link>

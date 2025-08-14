@@ -1,4 +1,5 @@
 import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
+import classNames from 'classnames';
 
 export const PeopleFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -100,6 +101,7 @@ export const PeopleFilters = () => {
             data-cy="NameFilter"
             type="search"
             className="input"
+            value={searchParams.get('query') || ''}
             placeholder="Search"
             onChange={e => handleQueryChange(e.target.value)}
           />
@@ -115,7 +117,9 @@ export const PeopleFilters = () => {
           <div className="level-left">
             <button
               data-cy="century"
-              className={`button mr-1${centuries.includes('16') ? 'is-info' : ''}`}
+              className={classNames('button', 'mr-1', {
+                'is-info': centuries.includes('16'),
+              })}
               onClick={() => handleCenturyChange('16')}
             >
               16
@@ -123,7 +127,9 @@ export const PeopleFilters = () => {
 
             <button
               data-cy="century"
-              className={`button mr-1${centuries.includes('17') ? 'is-info' : ''}`}
+              className={classNames('button', 'mr-1', {
+                'is-info': centuries.includes('17'),
+              })}
               onClick={() => handleCenturyChange('17')}
             >
               17
@@ -131,7 +137,9 @@ export const PeopleFilters = () => {
 
             <button
               data-cy="century"
-              className={`button mr-1${centuries.includes('18') ? 'is-info' : ''}`}
+              className={classNames('button', 'mr-1', {
+                'is-info': centuries.includes('18'),
+              })}
               onClick={() => handleCenturyChange('18')}
             >
               18
@@ -139,7 +147,9 @@ export const PeopleFilters = () => {
 
             <button
               data-cy="century"
-              className={`button mr-1${centuries.includes('19') ? 'is-info' : ''}`}
+              className={classNames('button', 'mr-1', {
+                'is-info': centuries.includes('19'),
+              })}
               onClick={() => handleCenturyChange('19')}
             >
               19
@@ -147,7 +157,9 @@ export const PeopleFilters = () => {
 
             <button
               data-cy="century"
-              className={`button mr-1${centuries.includes('20') ? 'is-info' : ''}`}
+              className={classNames('button', 'mr-1', {
+                'is-info': centuries.includes('20'),
+              })}
               onClick={() => handleCenturyChange('20')}
             >
               20
@@ -169,7 +181,7 @@ export const PeopleFilters = () => {
       <div className="panel-block">
         <button
           className="button is-link is-outlined is-fullwidth"
-          onClick={() => resetAllFilters}
+          onClick={resetAllFilters}
         >
           Reset all filters
         </button>

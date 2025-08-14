@@ -14,14 +14,28 @@ export const PeopleTable = ({ people }: { people: Person[] }) => {
   const handleSort = (field: string) => {
     setSearchParams(prevSearchParams => {
       const newSearchParams = new URLSearchParams(prevSearchParams.toString());
+      const currentSort = newSearchParams.get('sort');
+      const currentOrder = newSearchParams.get('order');
 
-      if (sortBy !== field) {
-        newSearchParams.delete('sort');
-        newSearchParams.delete('order');
-        newSearchParams.set('order', 'desc');
-      } else {
-        newSearchParams.delete('sort');
-        newSearchParams.delete('order');
+      switch (true) {
+        case currentSort !== field:
+          newSearchParams.set('sort', field);
+          newSearchParams.set('order', 'asc');
+          break;
+
+        case currentOrder === 'asc':
+          newSearchParams.set('order', 'desc');
+          break;
+
+        case currentOrder === 'desc':
+          newSearchParams.delete('sort');
+          newSearchParams.delete('order');
+          break;
+
+        default:
+          newSearchParams.set('sort', field);
+          newSearchParams.set('order', 'asc');
+          break;
       }
 
       return newSearchParams;
